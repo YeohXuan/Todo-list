@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Jost&display=swap");
+
+body {
+  font-family: "Rubik", "Jost", "Poppins", sans-serif;
+  user-select: none;
+  background-color: #e1f7f5;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 320px;
+  margin: auto;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 20px;
+}
+
+.input,
+.add-btn {
+  max-width: 100%;
+  padding: 0.875em 0.625em;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+}
+
+.input {
+  background-color: #dce1eb;
+}
+
+.add-btn {
+  background-color: #1f53a7;
+  color: #bae6e3;
+  cursor: pointer;
+}
+
+ul {
+  font-family: "Jost", "Rubik", "Poppins", sans-serif;
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+ul li {
+  font-size: 1.125rem;
+  flex-grow: 1;
+  background-color: #ffecc7;
+  text-align: center;
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+}
