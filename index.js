@@ -3,8 +3,8 @@ import {
   getDatabase,
   ref,
   push,
-  onValue, 
-  remove
+  onValue,
+  remove,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
@@ -22,8 +22,11 @@ const todoList = document.getElementById("todo-list");
 
 function pushToDB() {
   const inputValue = input.value;
-  push(todoListInDB, inputValue);
-  input.value = "";
+
+  if (inputValue) {
+    push(todoListInDB, inputValue);
+    input.value = "";
+  }
 }
 
 addBtn.addEventListener("click", pushToDB);
