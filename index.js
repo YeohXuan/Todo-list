@@ -18,14 +18,23 @@ const todoListInDB = ref(database, "todoList");
 
 const input = document.getElementById("input");
 const addBtn = document.getElementById("add-btn");
+const isImportantBtn = document.getElementById("toggle-imp");
 const todoList = document.getElementById("todo-list");
 
 function pushToDB() {
-  const inputValue = input.value;
+  const inputValue = input.value.trim();
+  let isChecked;
+
+  if (isImportantBtn.checked) {
+    isChecked = true;
+  } else {
+    isChecked = false;
+  }
 
   if (inputValue) {
-    push(todoListInDB, inputValue);
+    push(todoListInDB, `${inputValue} ${isChecked}`);
     input.value = "";
+    isImportantBtn.checked = false;
   }
 }
 
@@ -36,25 +45,34 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-onValue(todoListInDB, function (snapshot) {
+onValue(todoListInDB, (snapshot) => {
   if (snapshot.exists()) {
     todoList.textContent = "";
-    const taskArray = Object.entries(snapshot.val());
-    for (let [taskID, task] of taskArray) {
-      renderTodoList(taskID, task);
+    const taskArr = Object.entries(snapshot.val());
+
+    for (let [taskID, task] of taskArr) {
+      const words = task.split(" ");
+      const isChecked = words.pop();
+      const taskName = words.join();
+
+      renderTodoList(taskID, taskName, isChecked);
     }
   } else {
-    todoList.innerHTML = "&nbsp&nbspNo task today... yet";
+    todoList.textContent = "No task today... yet";
   }
 });
 
-function renderTodoList(taskID, task) {
+function renderTodoList(taskID, task, isChecked) {
   const newEl = document.createElement("li");
   newEl.textContent += task;
+
+  if (isChecked === "true") {
+    newEl.classList.add("is-checked");
+  }
+
+  todoList.append(newEl);
 
   newEl.addEventListener("click", () => {
     remove(ref(database, `todoList/${taskID}`));
   });
-
-  todoList.append(newEl);
 }

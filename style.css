@@ -21,6 +21,42 @@ body {
   padding-top: 20px;
 }
 
+.toggle {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+#toggle-imp {
+  display: none;
+}
+
+.toggle-switch {
+  position: relative;
+  background-color: #dce1eb;
+  width: 40px;
+  height: 25px;
+  border-radius: 200px;
+  cursor: pointer;
+}
+.toggle-switch::before {
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  border-radius: 200px;
+  margin: 5px;
+  transition: 0.3s;
+}
+
+#toggle-imp:checked + .toggle-switch {
+  background-color: #1f53a7;
+}
+#toggle-imp:checked + .toggle-switch::before {
+  transform: translateX(14.5px);
+}
+
 .input,
 .add-btn {
   max-width: 100%;
@@ -46,17 +82,24 @@ ul {
   font-family: "Jost", "Rubik", "Poppins", sans-serif;
   list-style-type: none;
   padding-left: 0;
+  margin: 12px 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8.5px;
 }
 
 ul li {
   font-size: 1.125rem;
   flex-grow: 1;
-  background-color: #ffecc7;
+  background-color: #1f53a7;
+  color: rgb(244, 244, 244);
   text-align: center;
   border-radius: 8px;
   padding: 15px;
   cursor: pointer;
+}
+
+ul li.is-checked {
+  background-color: #ffecc7;
+  color: black;
 }
