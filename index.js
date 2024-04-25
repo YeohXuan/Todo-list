@@ -53,7 +53,7 @@ onValue(todoListInDB, (snapshot) => {
     for (let [taskID, task] of taskArr) {
       const words = task.split(" ");
       const isChecked = words.pop();
-      const taskName = words.join();
+      const taskName = words.join(" ");
 
       renderTodoList(taskID, taskName, isChecked);
     }
